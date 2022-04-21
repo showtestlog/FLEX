@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <FLEX/FLEXHeapEnumerator.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

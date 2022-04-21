@@ -22,4 +22,6 @@ typedef void (^flex_object_enumeration_block_t)(__unsafe_unretained id object, _
 /// Returned references have been validated via \c FLEXPointerIsValidObjcObject
 + (NSArray<FLEXObjectRef *> *)objectsWithReferencesToObject:(id)object retained:(BOOL)retain;
 
++ (void)fetchAllObjectinContain:(CFMutableArrayRef)array;
+
 @end

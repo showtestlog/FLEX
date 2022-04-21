@@ -144,6 +144,18 @@ static kern_return_t reader(__unused task_t remote_task, vm_address_t remote_add
     return references;
 }
 
++ (void)fetchAllObjectinContain:(CFMutableArrayRef)array {
+    if (array == NULL) {
+        NSAssert(NO, @"container is NULL");
+    }
+    CFArrayRemoveAllValues(array);
+    [FLEXHeapEnumerator enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id object, __unsafe_unretained Class actualClass) {
+            if (malloc_size((__bridge const void *)(object)) > 0) {
+                CFArrayAppendValue(array, (__bridge  void *)object);
+            }
+    }];
+}
+
 + (NSArray<FLEXObjectRef *> *)objectsWithReferencesToObject:(id)object retained:(BOOL)retain {
     static Class SwiftObjectClass = nil;
     static dispatch_once_t onceToken;
